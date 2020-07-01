@@ -1,123 +1,276 @@
-import java.io.*;
+
+
+import java.io.File;
 import java.util.*;
 
+
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner in= new Scanner(System.in);
-        File file = new File("src/book.txt");
-        if(file.exists() && file.canRead()){
-            System.out.println("File name is "+file);
-            System.out.println("Amount of words: "+ countWords(file));
-            System.out.println("Count of characters: " +countCharacters(file));
-            System.out.println("Count of sentences: "+sentenceCount(file));
-            System.out.println("Word frequency in this file: ");
-            wordFrequency(file);
-            System.out.println("Longest word is: " + longestWord(file));
-            System.out.println("Enter your reading speed:");
-            System.out.println("Average reader's speed is 250 WPM(words per minute)");
-            int wpm = in.nextInt();
-            readingTime(file,wpm);
+
+    public static File fileWithStudents = new File("src/names.txt");
+    public static ArrayList<String> nameOfStudents = new ArrayList<>();
+    public static ArrayList<String> surnameOfStudents = new ArrayList<>();
+
+
+
+    public static void main(String[] args) throws Exception{
+        workWithFile();
+
+        System.out.println("Number of unique names: "+uniqueNameOfStudents().size());
+        System.out.println("Unique names in the "+fileWithStudents+":");
+        for(String s:uniqueNameOfStudents()){
+            System.out.println(s);
         }
-        else{
-            System.out.println("Please ensure that your file exists or can be read!");
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("Number of unique surnames: "+uniqueSurnameOfStudents().size());
+        System.out.println("Unique surnames in the "+fileWithStudents+":");
+        for(String s:uniqueSurnameOfStudents()){
+            System.out.println(s);
+        }
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("Popular names(which is encountered 3 or more times): ");
+        for(String s:popularNames()){
+            System.out.println(s);
+        }
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("Popular surnames(which is encountered 3 or more times): ");
+        for(String s:popularSurnames()){
+            System.out.println(s);
+        }
+
+        System.out.println("--------------------------------------------------");
+        longestName();
+        longestSurname();
+
+
+        highestRatioOfVowelsInName();
+        highestRatioOfConsInName();
+
+
+
+    }
+
+
+    public static void workWithFile() throws Exception{
+        Scanner scanner = new Scanner(fileWithStudents);
+        while(scanner.hasNextLine()){
+            String[] line = scanner.nextLine().trim().split("\\s+");
+            nameOfStudents.add(line[0]);
+            surnameOfStudents.add(line[1]);
         }
     }
 
-    public static int countWords(File file){
-        int wordCount=0;
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String s;
-            while((s= br.readLine())!=null){
-                String[] words  = s.trim().split("\\s+");
-                wordCount +=words.length;
+    public static ArrayList<String> uniqueNameOfStudents(){
+        HashMap<String,Integer> findingUniqueName = new HashMap<>();
+        ArrayList<String> listOfUniqueNames = new ArrayList<>();
+
+
+        for(int i=0;i<nameOfStudents.size();i++){
+            if(findingUniqueName.containsKey(nameOfStudents.get(i))){
+                findingUniqueName.put(nameOfStudents.get(i),findingUniqueName.get(nameOfStudents.get(i))+1);
             }
-            br.close();
-        }catch (Exception e){
-            e.printStackTrace();
-
+            else{
+                findingUniqueName.put(nameOfStudents.get(i),1);
+            }
         }
-        return wordCount;
+
+        for(Map.Entry<String,Integer> m:findingUniqueName.entrySet()){
+            if(m.getValue()==1){
+                listOfUniqueNames.add(m.getKey());
+            }
+        }
+
+        return listOfUniqueNames;
     }
 
-    public static void wordFrequency(File file){
-        HashMap<String,Integer> wordFrequency = new HashMap<String,Integer>();
-        try{
-            Scanner sc = new Scanner(new FileReader(file));
-            while(sc.hasNext()){
-                String word = sc.next();
-                Integer count = wordFrequency.get(word);
-                if(count!=null){
-                    count++;
-                }else{
-                    count = 1;
+    public static ArrayList<String> uniqueSurnameOfStudents(){
+        HashMap<String,Integer> findingUniqueSurname = new HashMap<>();
+        ArrayList<String> listOfUniqueSurnames = new ArrayList<>();
+
+
+        for(int i=0;i<surnameOfStudents.size();i++){
+            if(findingUniqueSurname.containsKey(surnameOfStudents.get(i))){
+                findingUniqueSurname.put(surnameOfStudents.get(i),findingUniqueSurname.get(surnameOfStudents.get(i))+1);
+            }
+            else{
+                findingUniqueSurname.put(surnameOfStudents.get(i),1);
+            }
+        }
+
+        for(Map.Entry<String,Integer> m:findingUniqueSurname.entrySet()){
+            if(m.getValue()==1){
+                listOfUniqueSurnames.add(m.getKey());
+            }
+        }
+
+        return listOfUniqueSurnames;
+    }
+
+
+    public static ArrayList<String> popularNames(){
+
+        HashMap<String,Integer> findingPopularName = new HashMap<>();
+        ArrayList<String> listOfPopularNames = new ArrayList<>();
+
+
+        for(int i=0;i<nameOfStudents.size();i++){
+            if(findingPopularName.containsKey(nameOfStudents.get(i))){
+                findingPopularName.put(nameOfStudents.get(i),findingPopularName.get(nameOfStudents.get(i))+1);
+            }
+            else{
+                findingPopularName.put(nameOfStudents.get(i),1);
+            }
+        }
+
+
+
+        for(Map.Entry<String,Integer> m:findingPopularName.entrySet()){
+            if(m.getValue()>=3){
+                listOfPopularNames.add(m.getKey());
+            }
+        }
+
+
+        return listOfPopularNames;
+
+    }
+
+
+    public static ArrayList<String> popularSurnames(){
+
+        HashMap<String,Integer> findingPopularSurname = new HashMap<>();
+        ArrayList<String> listOfPopularSurnames = new ArrayList<>();
+
+
+        for(int i=0;i<surnameOfStudents.size();i++){
+            if(findingPopularSurname.containsKey(surnameOfStudents.get(i))){
+                findingPopularSurname.put(surnameOfStudents.get(i),findingPopularSurname.get(surnameOfStudents.get(i))+1);
+            }
+            else{
+                findingPopularSurname.put(surnameOfStudents.get(i),1);
+            }
+        }
+
+        int count=0;
+        for(Map.Entry<String,Integer> m:findingPopularSurname.entrySet()){
+            count+=m.getValue();
+        }
+
+        for(Map.Entry<String,Integer> m:findingPopularSurname.entrySet()){
+            if(m.getValue()>=3){
+                listOfPopularSurnames.add(m.getKey());
+            }
+        }
+
+
+        return listOfPopularSurnames;
+
+    }
+
+
+    public static void longestName(){
+        String longestName = nameOfStudents.get(0);
+        for(String s:nameOfStudents){
+            if(s.length()>longestName.length()){
+                longestName=s;
+            }
+        }
+        System.out.println("Longest name is "+longestName);
+    }
+
+    public static void longestSurname(){
+        String longestSurname = surnameOfStudents.get(0);
+        for(String s:surnameOfStudents){
+            if(s.length()>longestSurname.length()){
+                longestSurname=s;
+            }
+        }
+        System.out.println("Longest surname is "+longestSurname);
+    }
+
+    public static void highestRatioOfVowelsInName() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        ArrayList<String> noDuplicateNames = new ArrayList<>();
+
+        for (String s : nameOfStudents) {
+            if (!noDuplicateNames.contains(s)) {
+                noDuplicateNames.add(s);
+            }
+        }
+
+
+        for (int i = 0; i < noDuplicateNames.size(); i++) {
+            int count = 0;
+            char[] letters = noDuplicateNames.get(i).toLowerCase().toCharArray();
+            for (int j = 0; j < letters.length; j++) {
+
+                if((letters[j] >= 'a' && letters[j] <= 'z') ||
+                        (letters[j] >= 'A' && letters[j] <= 'Z')) {
+                    if (letters[j] == 'a' || letters[j] == 'e' || letters[j] == 'i' || letters[j] == 'o' || letters[j] == 'u') {
+                        count++;
+                    }
                 }
-                wordFrequency.put(word,count);
+
+
             }
-            sc.close();
-        }catch (Exception e){
-            e.printStackTrace();
+            hm.put(noDuplicateNames.get(i), count);
         }
 
-        for(String i: wordFrequency.keySet()){
-            System.out.println(i+":"+wordFrequency.get(i));
+        int max = 0;
+        String name = "";
+        for (Map.Entry<String, Integer> m : hm.entrySet()) {
+            if (m.getValue() > max) {
+                max = m.getValue();
+                name = m.getKey();
+            }
         }
+        System.out.println("Name with highest ratio of vowels is "+name);
     }
 
+    public static void highestRatioOfConsInName(){
+        HashMap<String, Integer> hm = new HashMap<>();
+        ArrayList<String> noDuplicateNames = new ArrayList<>();
 
-    public static String longestWord(File file){
+        for (String s : nameOfStudents) {
+            if (!noDuplicateNames.contains(s)) {
+                noDuplicateNames.add(s);
+            }
+        }
 
-        String longestWord = " ";
-        try{
-            Scanner sc = new Scanner(new FileReader(file));
-            String c;
-            while(sc.hasNext()){
-                c = sc.next();
-                if(c.length()>longestWord.length()){
-                    longestWord=c;
+
+        for (int i = 0; i < noDuplicateNames.size(); i++) {
+            int count = 0;
+            char[] letters = noDuplicateNames.get(i).toLowerCase().toCharArray();
+            for (int j = 0; j < letters.length; j++) {
+                if((letters[j] >= 'a' && letters[j] <= 'z') ||
+                        (letters[j] >= 'A' && letters[j] <= 'Z')) {
+                    if (letters[j] != 'a' && letters[j] != 'e' && letters[j] != 'i' && letters[j] != 'o' && letters[j] != 'u') {
+                        count++;
+                    }
                 }
-            }
-            sc.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return longestWord;
-    }
 
-    public static int countCharacters(File file){
-        int characterCount = 0;
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String s;
-            while((s= br.readLine())!=null){
-                characterCount+=s.length();
             }
-            br.close();
-        }catch (Exception e){
-            e.printStackTrace();
+            hm.put(noDuplicateNames.get(i), count);
         }
-        return characterCount;
-    }
 
-    public static void readingTime(File file,int wpm){
-        double minute = countWords(file) / wpm;
-        double second = Math.round(((minute%wpm)/wpm)*60);
-        System.out.println("This should take you around "+(int)minute+" minutes and " +(int)second + " seconds to read at "+wpm+" words per minute.");
-    }
-
-    public static int sentenceCount(File file){
-        int sentenceCount = 0;
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String s;
-            while((s= br.readLine())!=null){
-                String[] sentence  = s.split("[!?.:]+");
-                sentenceCount+=sentence.length;
+        int max = 0;
+        String name = "";
+        for (Map.Entry<String, Integer> m : hm.entrySet()) {
+            if (m.getValue() > max) {
+                max = m.getValue();
+                name = m.getKey();
             }
-            br.close();
-        }catch (Exception e){
-            e.printStackTrace();
         }
-        return sentenceCount;
+        System.out.println("Name with highest ratio of consonants is "+name);
+
     }
 }
+
+
+
+
+
+
