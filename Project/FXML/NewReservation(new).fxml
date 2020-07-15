@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1100.0" style="-fx-background-color: #E5F3F3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.NewReservationController">
+   <children>
+      <VBox layoutX="-1.0" prefHeight="780.0" prefWidth="248.0" style="-fx-background-color: #27475C;">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-меню-30.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="10.0" top="8.0" />
+               </VBox.margin>
+            </ImageView>
+            <VBox prefHeight="302.0" prefWidth="248.0">
+               <children>
+                  <Button fx:id="MainPageBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchMainPage" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #27475C#27475C;" text="Main Page" textFill="#fdfdfd">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-главная-страница-30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="NewReservationBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchNewReservation" prefHeight="44.0" prefWidth="229.0" style="-fx-background-color: #27475C#27475C;" text="New Reservation" textFill="#e7e22d">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-плюс-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="RoomsBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchRooms" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #27475C#27475C;" text="Rooms" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-бирка-на-дверь-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="ReservationBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchReservation" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #27475C#27475C;" text="Reservation" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-бронирование-2-80.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="VisitorsBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchVisitors" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #27475C#27475C;" text="Visitors" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-групповой-звонок-24%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="HistoryBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchHistory" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #27475C#27475C;" text="History" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-история-заказов-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <HBox layoutX="247.0" prefHeight="58.0" prefWidth="854.0">
+         <children>
+            <Pane prefHeight="58.0" prefWidth="855.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="16.0" layoutY="20.0" text="Hi,this is admin!">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="39.0" fitWidth="33.0" layoutX="110.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-пользователь-мужчина-в-кружке-30.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="CENTER" layoutX="639.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchNewReservation" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: #27475C;" text="New Reservation" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-плюс-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <HBox layoutX="286.0" layoutY="58.0" prefHeight="100.0" prefWidth="521.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="201.0">
+               <children>
+                  <Label layoutY="35.0" text="New Reservation">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <VBox layoutX="286.0" layoutY="158.0" prefHeight="448.0" prefWidth="342.0" spacing="10.0" style="-fx-background-color: #FEFFFF;">
+         <children>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Visitor's name">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorName" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Visitor's surname">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorsSurname" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Email">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorEmail" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Phone">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorPhone" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Check in">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorCheckIn" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+                  <HBox layoutX="78.0" layoutY="5.0" prefHeight="22.0" prefWidth="261.0">
+                     <children>
+                        <Label text="Write date in dd/MM/yyyy pattern.For Ex:27/06/2020" textFill="#a49c9c">
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="342.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Check out">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="visitorCheckOut" layoutX="14.0" layoutY="36.0" prefHeight="30.0" prefWidth="313.0" />
+                  <HBox layoutX="81.0" layoutY="5.0" prefHeight="22.0" prefWidth="261.0">
+                     <children>
+                        <Label text="Write date in dd/MM/yyyy pattern.For Ex:27/06/2020" textFill="#a49c9c">
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <VBox layoutX="688.0" layoutY="158.0" prefWidth="367.0" style="-fx-background-color: #FEFFFF;">
+         <children>
+            <Pane prefWidth="334.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Select Room">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="selectRoom" layoutX="14.0" layoutY="38.0" onAction="#printRoomDetails" prefHeight="30.0" prefWidth="345.0" />
+                  <Label fx:id="roomDetails" layoutX="19.0" layoutY="78.0">
+                     <padding>
+                        <Insets bottom="30.0" />
+                     </padding></Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <VBox layoutX="688.0" layoutY="456.0" prefHeight="100.0" prefWidth="367.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutY="38.0" mnemonicParsing="false" onAction="#createNewReservation" prefHeight="30.0" prefWidth="367.0" style="-fx-background-color: #35495E;" text="Create and Save" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <HBox layoutX="668.0" layoutY="556.0" prefHeight="100.0" prefWidth="367.0">
+         <children>
+            <Label fx:id="errorMessage">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
